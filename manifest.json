@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "Movie Ratings",
+  "description": "This extension provides a popup with Rotten Tomatoes information.",
+  "version": "0.8",
+
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_popup": "html/popup.html"
+  },
+  "permissions": [
+    "http://api.rottentomatoes.com/"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": ["http://dvd.netflix.com/Movie/*", "http://www.netflix.com/Movie/*"],
+      "js": ["js/jquery.min.js", "js/moviefinder.js", "js/netflix.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["http://dvd.netflix.com/Movie/*", "http://www.netflix.com/Movie/*"],
+      "js": ["js/jquery.min.js", "js/moviefinder.js", "js/selection.js"]
+    }
+  ]
+}
