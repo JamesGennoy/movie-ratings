@@ -3,11 +3,11 @@ $(document).ready(function() {
     chrome.tabs.sendMessage(tab[0].id, {method: "getData"}, function(response) {
       if (response !== undefined) {
         if (response.type === 'title') {
-          movieFinder.searchMovies(response.data, function(data){
-            movieFinder.showMovies(data);
+          movieFinder.searchForPopup(response.data, function(data){
+            $('#contents').append(movieFinder.buildForPopup(data));
           });
         } else if (response.type === 'movies'){
-          movieFinder.showMovies(response.data);
+          $('#contents').append(movieFinder.buildForPopup(response.data));
         }
       }
     });

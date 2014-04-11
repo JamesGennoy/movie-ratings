@@ -9,17 +9,17 @@
     "default_popup": "html/popup.html"
   },
   "permissions": [
-    "http://api.rottentomatoes.com/"
+    "http://api.rottentomatoes.com/", "http://www.omdbapi.com/"
   ],
   
   "content_scripts": [
     {
-      "matches": ["http://dvd.netflix.com/Movie/*", "http://www.netflix.com/Movie/*"],
+      "matches": ["http://dvd.netflix.com/Movie/*", "http://www.netflix.com/WiMovie/*"],
       "js": ["js/jquery.min.js", "js/moviefinder.js", "js/netflix.js"]
     },
     {
       "matches": ["<all_urls>"],
-      "exclude_matches": ["http://dvd.netflix.com/Movie/*", "http://www.netflix.com/Movie/*"],
+      "exclude_matches": ["http://dvd.netflix.com/Movie/*", "http://www.netflix.com/WiMovie/*"],
       "js": ["js/jquery.min.js", "js/moviefinder.js", "js/selection.js"]
     }
   ]
