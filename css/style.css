@@ -1,0 +1,32 @@
+body {
+  min-width: 357px;
+  overflow-x: hidden;
+}
+
+p.rotten-fresh {
+    background:url('chrome-extension://__MSG_@@extension_id__/images/rotten-fresh.png') no-repeat;
+    background-size: auto 19px;
+    padding-left:25px;
+    line-height: 20px;
+}
+
+p.rotten-splat {
+    background:url('chrome-extension://__MSG_@@extension_id__/images/rotten-splat.png') no-repeat;
+    background-size: auto 19px;
+    padding-left:25px;
+    line-height: 20px;
+}
+
+p.imdb {
+    background:url('chrome-extension://__MSG_@@extension_id__/images/imdb.svg') no-repeat;
+    background-size: auto 19px;
+    padding-left:40px;
+    line-height: 20px;
+}
+
+p.metacritic {
+    background:url('chrome-extension://__MSG_@@extension_id__/images/metacritic.svg') no-repeat;
+    background-size: auto 19px;
+    padding-left:25px;
+    line-height: 20px;
+}

@@ -63,13 +63,19 @@ var movieFinder = (function() {
 
     return {
         buildForNetflix: function(movie) {
-            return '<p>Rotten Tomatoes: ' + movie.tomatoMeter + '%</p>' +
-                '<p>IMDB: ' + movie.imdbRating + '</p>' +
-                '<p>Metacritic: ' + movie.Metascore + '</p>';
+            var contents = '';
+            if (movie.tomatoMeter >= 60) { 
+                contents = contents.concat('<p class="rotten-fresh">' + movie.tomatoMeter + '%</p>');
+            } else {
+                contents = contents.concat('<p class="rotten-splat">' + movie.tomatoMeter + '%</p>');
+            }
+            contents = contents.concat('<p class="imdb">' + movie.imdbRating + '</p>');
+            contents = contents.concat('<p class="metacritic">' + movie.Metascore + '</p>');
+            return contents;
         },
         buildForPopup: function(movies) {
             var contents = '';
-            for (var i = 0; i < movies.length; i++) {
+            for (var i = 0; i < movies.length; i++) {var movies = {};
                 contents = contents.concat('<p>' + movies[i].Title + ' (' + movies[i].Year + ') - ' + movies[i].tomatoMeter + '% - ' + movies[i].imdbRating + ' - ' + movies[i].Metascore + '</p>');
             }
             return contents;

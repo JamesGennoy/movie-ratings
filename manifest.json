@@ -20,7 +20,12 @@
     {
       "matches": ["<all_urls>"],
       "exclude_matches": ["http://dvd.netflix.com/Movie/*", "http://www.netflix.com/WiMovie/*"],
-      "js": ["js/jquery.min.js", "js/moviefinder.js", "js/selection.js"]
+      "js": ["js/jquery.min.js", "js/moviefinder.js", "js/selection.js"],
+      "css": ["css/style.css"]
     }
+  ],
+  
+  "web_accessible_resources": [
+    "images/*"
   ]
 }
