@@ -63,22 +63,47 @@ var movieFinder = (function() {
 
     return {
         buildForNetflix: function(movie) {
-            var contents = '';
+            var c = '';
             if (movie.tomatoMeter >= 60) { 
-                contents = contents.concat('<p class="rotten-fresh">' + movie.tomatoMeter + '%</p>');
+                c = c.concat('<p class="rotten-fresh">' + movie.tomatoMeter + '%</p>');
             } else {
-                contents = contents.concat('<p class="rotten-splat">' + movie.tomatoMeter + '%</p>');
+                c = c.concat('<p class="rotten-splat">' + movie.tomatoMeter + '%</p>');
             }
-            contents = contents.concat('<p class="imdb">' + movie.imdbRating + '</p>');
-            contents = contents.concat('<p class="metacritic">' + movie.Metascore + '</p>');
-            return contents;
+            c = c.concat('<p class="imdb">' + movie.imdbRating + '</p>');
+            c = c.concat('<p class="metacritic">' + movie.Metascore + '</p>');
+            return c;
         },
         buildForPopup: function(movies) {
-            var contents = '';
-            for (var i = 0; i < movies.length; i++) {var movies = {};
-                contents = contents.concat('<p>' + movies[i].Title + ' (' + movies[i].Year + ') - ' + movies[i].tomatoMeter + '% - ' + movies[i].imdbRating + ' - ' + movies[i].Metascore + '</p>');
+            var c = '';
+            var movie = {};
+            for (var i = 0; i < movies.length; i++) {
+                movie = movies[i];
+                c = c.concat('<div class="popup-item">');
+                c = c.concat('<div class="popup-item-left">');
+                if (movie.Poster && movie.Poster != 'N/A') {
+                    c = c.concat('<img class="movie-poster" src="' + movie.Poster + '"></img>');
+                } else {
+                    c = c.concat('<img class="movie-poster" src="defaultPoster.png"></img>');
+                }
+                c = c.concat('</div><div class="popup-item-right">');
+                c = c.concat('<h2>' + movie.Title + ' (' + movie.Year + ')</h2>');
+                if (movie.tomatoMeter && movie.tomatoMeter != 'N/A') {
+                    if (movie.tomatoMeter >= 60) { 
+                        c = c.concat('<span class="rotten-fresh">' + movie.tomatoMeter + '%</span>');
+                    } else {
+                        c = c.concat('<span class="rotten-splat">' + movie.tomatoMeter + '%</span>');
+                    }
+                }
+                if (movie.imdbRating && movie.imdbRating != 'N/A') {
+                    c = c.concat('<span class="imdb">' + movie.imdbRating + '</span>');
+                }
+                if (movie.Metascore && movie.Metascore != 'N/A') {
+                    c = c.concat('<span class="metacritic">' + movie.Metascore + '</span>');
+                }
+                c = c.concat('</div>');
+                c = c.concat('</div>');
             }
-            return contents;
+            return c;
         },
         searchForNetflix: function(title, year, callback) {
             _findMovieByTitle(title, year, function(data) {

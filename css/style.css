@@ -3,29 +3,60 @@ body {
   overflow-x: hidden;
 }
 
-p.rotten-fresh {
+.popup-item {
+    height: 65px;
+}
+
+.popup-item-right > h2 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.popup-item-right > span {
+    margin-right: 25px;
+    display: inline-block;
+}
+
+.popup-item-left {
+    float:left;
+    width: 50px;
+    height: 65px;
+}
+
+.popup-item-right {
+    float: left;
+    width: 290px;
+    height: 65px;
+}
+
+img.movie-poster {
+    max-height: 50px;
+    max-width: 35px;
+}
+
+.rotten-fresh {
     background:url('chrome-extension://__MSG_@@extension_id__/images/rotten-fresh.png') no-repeat;
     background-size: auto 19px;
     padding-left:25px;
     line-height: 20px;
 }
 
-p.rotten-splat {
+.rotten-splat {
     background:url('chrome-extension://__MSG_@@extension_id__/images/rotten-splat.png') no-repeat;
     background-size: auto 19px;
     padding-left:25px;
     line-height: 20px;
 }
 
-p.imdb {
-    background:url('chrome-extension://__MSG_@@extension_id__/images/imdb.svg') no-repeat;
+.imdb {
+    background:url('chrome-extension://__MSG_@@extension_id__/images/imdb.png') no-repeat;
     background-size: auto 19px;
-    padding-left:40px;
+    padding-left:45px;
     line-height: 20px;
 }
 
-p.metacritic {
-    background:url('chrome-extension://__MSG_@@extension_id__/images/metacritic.svg') no-repeat;
+.metacritic {
+    background:url('chrome-extension://__MSG_@@extension_id__/images/metacritic.png') no-repeat;
     background-size: auto 19px;
     padding-left:25px;
     line-height: 20px;
