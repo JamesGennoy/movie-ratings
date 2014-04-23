@@ -14,7 +14,6 @@ var movieFinder = (function() {
                 } catch (e) {
                     resp = '';
                 }
-                console.log(resp);
                 callback(resp);
             }
         }
@@ -35,7 +34,6 @@ var movieFinder = (function() {
                 } catch (e) {
                     resp = '';
                 }
-                console.log(resp);
                 callback(resp);
             }
         }
@@ -57,10 +55,9 @@ var movieFinder = (function() {
                 } catch (e) {
                     resp = '';
                 }
-                console.log(resp);
                 callback(resp);
             }
-        }
+        };
         xhr.send(null);
     }
 
@@ -78,7 +75,6 @@ var movieFinder = (function() {
             return contents;
         },
         searchForNetflix: function(title, year, callback) {
-            title = title.trim();
             _findMovieByTitle(title, year, function(data) {
                 if (data && data.Response) {
                     var _movies = [];
@@ -88,7 +84,7 @@ var movieFinder = (function() {
                     _searchMovies(title, year, function(data){
                         var _movies = [];
                         for (var i = 0; i < data.Search.length; i++) {
-                            _getMovieDetails(data.Search[i].imdbID, function(data){
+                            _findMovieById(data.Search[i].imdbID, function(data){
                                 if (data.Year == year && data.Title == title) {
                                     _movies.splice(0, 0, data);
                                 } else {
@@ -102,7 +98,6 @@ var movieFinder = (function() {
             });
         },
         searchForPopup: function(title, callback) {
-            title = title.trim();
             _findMovieByTitle(title, '', function(data) {
                 if (data && data.Response) {
                     var _movies = [];
@@ -111,19 +106,28 @@ var movieFinder = (function() {
                 } else {
                     _searchMovies(title, '', function(data){
                         var _movies = [];
-                        for (var i = 0; i < data.Search.length; i++) {
-                            _getMovieDetails(data.Search[i].imdbID, function(data){
-                                if (data.Year == year && data.Title == title) {
-                                    _movies.splice(0, 0, data);
-                                } else {
-                                    _movies.push(data);
-                                }
+                        if (data && data.Search && data.Search.length > 0) {
+                            _findMovieById(data.Search[0].imdbID, function(data){
+                                _movies.push(data);
                             });
                         }
                         callback(_movies);
                     });
                 }
             });
-        }        
+        },
+        searchMoreMovies: function(title, year, id, callback) {
+            _searchMovies(title, year, function(data){
+                var _movies = [];
+                for (var i = 0; i < data.Search.length; i++) {
+                    if (data.Search[i].imdbID != id) {
+                        _findMovieById(data.Search[i].imdbID, function(data){
+                            _movies.push(data);
+                        });
+                    }
+                }
+                callback(_movies);
+            });
+        }
     }
 }());
