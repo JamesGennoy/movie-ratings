@@ -86,7 +86,7 @@ var movieFinder = (function() {
                     c = c.concat('<img class="movie-poster" src="defaultPoster.png"></img>');
                 }
                 c = c.concat('</div><div class="popup-item-right">');
-                c = c.concat('<h2>' + movie.Title + ' (' + movie.Year + ')</h2>');
+                c = c.concat('<h2><a href="http://www.imdb.com/title/' + movie.imdbID + '" target="_blank">' + movie.Title + '</a> (' + movie.Year + ')</h2>');
                 if (movie.tomatoMeter && movie.tomatoMeter != 'N/A') {
                     if (movie.tomatoMeter >= 60) { 
                         c = c.concat('<span class="rotten-fresh">' + movie.tomatoMeter + '%</span>');

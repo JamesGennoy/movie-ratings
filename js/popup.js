@@ -4,10 +4,12 @@ function _buildPopup(movies, title, year, id) {
     $('#searchMore').click(function(){
         $('#searchMore').hide();
         $('#waiting').show();
-        movieFinder.searchMoreMovies(title, year, id, function(data){
-            $('#contents').append(movieFinder.buildForPopup(data));
-            $('#waiting').hide();
-        });
+        setTimeout(function(){
+            movieFinder.searchMoreMovies(title, year, id, function(data){
+                $('#contents').append(movieFinder.buildForPopup(data));
+                $('#waiting').hide();
+            });
+        }, 1);
     });
     $('#searchMore').show();
 }
